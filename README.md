@@ -25,3 +25,10 @@ This project provides a Docker container for an HPC environment based on OpenMPI
 - zlib1g-dev 
 - vim (preconfigured)
 - htop
+
+## Use Docker Container
+
+```docker build --no-cache -t dockermpi .```
+
+```docker run -it -t dockermpi:latest ```
+
