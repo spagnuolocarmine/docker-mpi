@@ -11,6 +11,8 @@ cp /opt/docker/bin/basic.vim  $HOME/.vimrc
 cp -R /etc/skel $HOME && chown -R red:red $HOME/skel && (ls -A1 $HOME/skel | xargs -I {} mv -n $HOME/skel/{} $HOME) && rm -Rf $HOME/skel
 cd $HOME || exit
 
+git clone https://github.com/spagnuolocarmine/playground-mpi
+
 . /opt/docker/bin/entrypoint_source
 
 exec gosu red "$@"
