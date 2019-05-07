@@ -1,0 +1,17 @@
+#!/bin/bash -l
+USER_ID=${HOST_USER_ID:-9001}
+useradd --shell /bin/bash -u "$USER_ID" -G redone -o -c "" -m red
+export HOME=/home/red
+export USER=red
+export LOGNAME=red
+export MAIL=/var/spool/mail/red
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/mightybuilder/bin
+chown -R red:red $HOME
+cp /opt/docker/bin/basic.vim  $HOME/.vimrc
+cp -R /etc/skel $HOME && chown -R red:red $HOME/skel && (ls -A1 $HOME/skel | xargs -I {} mv -n $HOME/skel/{} $HOME) && rm -Rf $HOME/skel
+cd $HOME || exit
+
+. /opt/docker/bin/entrypoint_source
+
+exec gosu red "$@"
+
