@@ -30,16 +30,5 @@ RUN apt-get --yes -qq update \
  && apt-get --yes -qq clean \
  && rm -rf /var/lib/apt/lists/*
 
-COPY basic.vim /opt/docker/bin/basic.vim
-
-COPY commands /opt/docker/bin/commands
-RUN /opt/docker/bin/commands
-
-COPY entrypoint_source /opt/docker/bin/entrypoint_source
-
-COPY entrypoint /opt/docker/bin/entrypoint
-
-ENTRYPOINT [ "/opt/docker/bin/tini", "--", "/opt/docker/bin/entrypoint" ]
-
 
 CMD [ "/bin/bash" ]
